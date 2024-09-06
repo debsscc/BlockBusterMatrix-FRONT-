@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { InputPesquisa } from "@/components/InputPesquisa"
 import { ItemGame } from "@/components/ItemGame";
 import { GameI } from "@/utils/types/games";
