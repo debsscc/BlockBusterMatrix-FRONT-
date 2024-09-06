@@ -8,7 +8,7 @@ import { Header } from "@/components/Headers";
 export const metadata: Metadata = {
   title: "Blockbuster Matrix",
   description: "Blockbuster Matrix - Rent video games and be a happy geek!",
-  keywords: ['Locadora', 'Jogos', 'Videogame', 'Geek', 'Aluguel', 'Diversão', 'Locadora de Jogos', 'Blockbuster', 'Matrix'],
+  keywords: ['Blockbuster', 'Games', 'Videogame', 'Geek', 'Rent', 'Fun', 'Game Blockbuster', 'Rent Games', 'Matrix'],
 };
 
 export default function RootLayout({

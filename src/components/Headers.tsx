@@ -5,7 +5,7 @@ export function Header() {
         <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 sticky">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://images.squarespace-cdn.com/content/v1/65d8eb4633d64574faa425e4/28a766ac-dc85-456a-8652-a7d25ba64606/logo%281%29_1.png?format=1500w" className="h-8" alt="Flowbite Logo" />
+                <img src="https://www.elocalx.com/image/cache/manufacturers/team-matrix-elocalx-600x315.png" className="h-8"/>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Blockbuster Matrix</span>
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
