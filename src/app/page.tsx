@@ -28,7 +28,7 @@ const listGames = games.map(game => (
       <div><InputPesquisa setGames={setGames} /></div>
       <div className="mx-auto max-w-screen-xl">
         <h1 className="mt-4 mb-4 text-w-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-6xl dark:text-white">BlockBuster Matrix <span className="text-red-600 dark:text-red-500">the worlds #1</span> rental house game.</h1>
-        <p className="mt-2 mb-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+        <p className="mt-2 mb-4 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here are the Blockbuster Matrix, where you can rent games online! Search for see!</p>
 
         {/* GRID GAMES */}
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
