@@ -54,7 +54,14 @@ export default function Details() {
     
                     {/* Additional information */}
                     <hr className="my-3 mt-2 border-t border-gray-300 dark:border-gray-600" />
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Release Year: {game?.year} ⎮ Game Genre: {game?.genre} ⎮ Price for Rent: ${game?.price}</p>
+                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        Release Year: {game?.year || 'N/A'} ⎮ 
+                        Game Genre: {game?.genre || 'N/A'} ⎮ 
+                        <span className="text-red-600 dark:text-red-500">
+                        Price for Rent:
+                            ${game?.price || 'N/A'}
+                        </span>
+                    </p>
                 </div>
             </a>
     
