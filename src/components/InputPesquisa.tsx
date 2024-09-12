@@ -34,7 +34,7 @@ export function InputPesquisa ({setGames} : InputPesquisaProps) {
         async function showDetails(){
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/`)
             const dados = await response.json()
-            reset ({termo: ' '})
+            reset ({termo: ''})
             setGames(dados)
         }
     
