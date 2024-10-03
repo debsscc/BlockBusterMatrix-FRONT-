@@ -1,12 +1,16 @@
-import { clienteI } from '@/utils/types/clientes'
+import { ClienteI } from '@/utils/types/clientes'
 import { create } from 'zustand'
 
 type ClienteStore = {
-    cliente: clienteI
+    cliente: ClienteI
+    logaCliente: (cliente: ClienteI) => void
+    deslogaCliente: () => void
 }
 
 export const useClienteStore = create<ClienteStore>((set) => ({
-    cliente: {} as clienteI
+    cliente: {} as ClienteI,
+    logaCliente: (clienteLogado) => set({ cliente: clienteLogado }),
+    deslogaCliente: () => set({ cliente: {} as ClienteI }),
 //   bears: 0,
 //   increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 //   removeAllBears: () => set({ bears: 0 }),

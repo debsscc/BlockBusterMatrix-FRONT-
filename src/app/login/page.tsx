@@ -1,6 +1,7 @@
 "use client"
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useClienteStore } from "@/context/cliente";
 
 type Inputs = {
     email: string
@@ -8,14 +9,15 @@ type Inputs = {
     continuar: boolean
 }
 
+/* FUNCTION LOGIN */
 export default function Login() {
     const { register, handleSubmit } = useForm<Inputs>(); 
     const router = useRouter()
-    
+    const { logaCliente } = useClienteStore()
     
     async function verificaLogin(data: Inputs) {
         // console.log(data)
-        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/clientes/login`, 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/login`, 
             {
                 headers:{
                     "Content-Type": "application/json"
@@ -28,11 +30,23 @@ export default function Login() {
         if (response.status == 200) {
             const dados = await response.json()
             // alert("Ok... Login and password correct.")
-            router.push("/")
+            logaCliente(dados)
+        if (data.continuar) {
+            localStorage.setItem('token', dados.id)
         } else {
+            if (localStorage.getItem('token')) {
+                localStorage.removeItem('token')
+            }
+        }
+        router.push('/')
+        } else {
+            console.log(response)
             alert("Error... Login or passwoard incorrect.")
         }
     }
+
+/* PAGE CSS */
+
 
     return (
         <section className="bg-gray-100 dark:bg-gray-900">
@@ -58,7 +72,7 @@ export default function Login() {
                             <div className="flex items-center justify-between">
                                 <div className="flex items-start">
                                     <div className="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required 
+                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"  
                                         {...register("continuar")}
                                         />
                                     </div>
