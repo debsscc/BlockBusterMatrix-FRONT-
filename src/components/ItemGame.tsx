@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function ItemGame({ data }: { data: GameI }) {
   return (
-    <div className="mx-auto max-w-screen-xl">
+    <div className="mx-auto max-w-64">
 
       {/* GRID GAMES */}
 
@@ -16,8 +16,8 @@ export function ItemGame({ data }: { data: GameI }) {
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{data.name} </h5>
 
             </a>
-            <p className="mb-2 text-gray-700 dark:text-gray-400">{data.description} </p>
-            
+            <p className="mb-2 text-gray-700 dark:text-gray-400 text-ellipsis overflow-hidden h-20 max-w-full">{data.description} </p>
+                        
             <hr className="my-3 mt-2 border-t border-gray-300 dark:border-gray-600" />
 
             <p > <span className="text-red-600 dark:text-red-500 font-bold">Price for Rent $ {data.price}</span></p>
