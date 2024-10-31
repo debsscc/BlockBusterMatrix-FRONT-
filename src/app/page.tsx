@@ -5,6 +5,7 @@ import { useClienteStore } from "@/context/cliente";
 import { GameI } from "@/utils/types/games";
 import { useEffect, useState } from "react";
 
+
 export default function Home() {
   const [games, setGames] = useState<GameI[]>([])
 
