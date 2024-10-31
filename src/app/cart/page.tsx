@@ -11,7 +11,7 @@ export default function Cart() {
     useEffect(() => {
         async function getDados() {
             /* fech e uma maneira de buscar certos dados */
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/${localStorage.getItem('client_key')}`)
             const dados = await response.json()
             console.log()
             setGames(dados)

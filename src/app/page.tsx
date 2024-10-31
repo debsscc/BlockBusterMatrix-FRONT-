@@ -1,13 +1,30 @@
 "use client"
 import { InputPesquisa } from "@/components/InputPesquisa";
 import { ItemGame } from "@/components/ItemGame";
+import { useClienteStore } from "@/context/cliente";
 import { GameI } from "@/utils/types/games";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const [games, setGames] = useState<GameI[]>([])
 
+  const {logaCliente} = useClienteStore()
+  
+
   useEffect(() => {
+
+    async function loga(userId: string) {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/clientes/${userId}`)
+      if (response.status == 200) {
+        const dados = await response.json()
+        logaCliente(dados)
+      }
+    }
+
+    if (localStorage.getItem('client_key')) {
+      const userId = localStorage.getItem('client_key') as string
+      loga(userId)
+    }
     async function getDados() {
       /* fech e uma maneira de buscar certos dados */
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games`)

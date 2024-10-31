@@ -32,10 +32,10 @@ export default function Login() {
             // alert("Ok... Login and password correct.")
             logaCliente(dados)
         if (data.continuar) {
-            localStorage.setItem('token', dados.id)
+            localStorage.setItem('client_key', dados.id)
         } else {
-            if (localStorage.getItem('token')) {
-                localStorage.removeItem('token')
+            if (localStorage.getItem('client_key')) {
+                localStorage.removeItem('client_key')
             }
         }
         router.push('/')

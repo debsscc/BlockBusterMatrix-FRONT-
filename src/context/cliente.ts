@@ -3,7 +3,7 @@ import { create } from 'zustand'
 
 type ClienteStore = {
     cliente: ClienteI
-    logaCliente: (cliente: ClienteI) => void
+    logaCliente: (clienteLogado: ClienteI) => void
     deslogaCliente: () => void
 }
 
