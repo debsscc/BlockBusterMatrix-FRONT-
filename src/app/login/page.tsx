@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useClienteStore } from "@/context/cliente";
+import { CircleUserRound } from "lucide-react";
 
 type Inputs = {
     email: string
@@ -16,10 +17,9 @@ export default function Login() {
     const { logaCliente } = useClienteStore()
     
     async function verificaLogin(data: Inputs) {
-        // console.log(data)
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/login`, 
             {
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 },
                 method: "POST",
@@ -29,66 +29,57 @@ export default function Login() {
         if (response.status == 200) {
             const dados = await response.json()
             logaCliente(dados)
-        if (data.continuar) {
-            localStorage.setItem('client_key', dados.id)
-        } else {
-            if (localStorage.getItem('client_key')) {
+            if (data.continuar) {
+                localStorage.setItem('client_key', dados.id)
+            } else {
                 localStorage.removeItem('client_key')
             }
-        }
-        router.push('/')
+            router.push('/')
         } else {
-            console.log(response)
-            alert("Error... Login or passwoard incorrect.")
+            alert("Error... Login or password incorrect.")
         }
     }
 
-/* PAGE CSS */
-
-
     return (
-        <section className="bg-gray-100 dark:bg-gray-900">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Sign in to your account
-                        </h1>
-                        <form className="space-y-4 md:space-y-6"
-                        onSubmit={handleSubmit(verificaLogin)}>
-                            <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required 
-                                {...register("email")}/> 
-                            </div>
-                            <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required 
-                                {...register("password")}
-                                />
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"  
-                                        {...register("continuar")}
-                                        />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
-                                    </div>
-                                </div>
-                                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500
-                                text-red-500">Forgot password?</a>
-                            </div>
-                            <button type="submit" className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-900 dark:hover:bg-blue-900 dark:focus:ring-blue-800">Sign in</button>
-                            
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500
-                                text-red-500">Sign up</a>
-                            </p>
-                        </form>
+        <section className="relative bg-gradient-to-br from-blue-900 to-indigo-900 min-h-screen flex items-center justify-center overflow-hidden">
+            {/* Background blur effect */}
+            <div className="absolute inset-0 bg-cover bg-center bg-no-repeat filter blur-lg opacity-30" style={{ backgroundImage: "url('https://path-to-your-background-image.jpg')" }}></div>
+            
+            <div className="relative w-full max-w-md bg-white bg-opacity-70 rounded-lg shadow-lg backdrop-blur-md dark:bg-gray-800 dark:bg-opacity-70">
+                <div className="p-8 space-y-6">
+                    {/* Logo */}
+                    <div className="flex justify-center mb-4">
+                    <img src="/logo.png" className="h-20" alt="Logo" />
                     </div>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+                        Sign in to your account
+                    </h1>
+                    <form className="space-y-6" onSubmit={handleSubmit(verificaLogin)}>
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-900 dark:text-gray-400">Email</label>
+                            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-indigo-600 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required {...register("email")} />
+                        </div>
+                        <div>
+                            <label htmlFor="password" className="block text-sm font-medium text-gray-900 dark:text-gray-400">Password</label>
+                            <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-2 focus:ring-indigo-600 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="••••••••" required {...register("password")} />
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <label className="flex items-center">
+                                <input type="checkbox" className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" {...register("continuar")} />
+                                <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                            </label>
+                            <a href="#" className="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-500">Forgot password?</a>
+                        </div>
+                        <button type="submit" className="w-full py-3 text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg font-medium">
+                            Sign in
+                        </button>
+                    </form>
+                    <div className="flex items-center justify-center mt-6">
+                        <span className="text-sm text-gray-600 dark:text-gray-400">Don’t have an account yet? <a href="#" className="text-indigo-600 font-medium hover:underline dark:text-indigo-500">Sign up</a></span>
+                    </div>
+                    <button type="button" className="w-full flex items-center justify-center py-3 mt-4 bg-blue-700 text-white font-medium rounded-lg hover:bg-blue-800" onClick={() => router.push('/admin')}>
+                        <CircleUserRound className="mr-2" size={20} /> Admin
+                    </button>
                 </div>
             </div>
         </section>
