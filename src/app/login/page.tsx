@@ -26,10 +26,8 @@ export default function Login() {
                 body: JSON.stringify({email: data.email, senha: data.password})
             }
         )
-        // console.log(response)
         if (response.status == 200) {
             const dados = await response.json()
-            // alert("Ok... Login and password correct.")
             logaCliente(dados)
         if (data.continuar) {
             localStorage.setItem('client_key', dados.id)
