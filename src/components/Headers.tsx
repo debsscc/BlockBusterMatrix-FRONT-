@@ -8,6 +8,7 @@ export function Header() {
     const { cliente, deslogaCliente } = useClienteStore();
     const router = useRouter();
 
+
     function clienteLogout() {
         deslogaCliente();
         if (localStorage.getItem('client_key')) {
