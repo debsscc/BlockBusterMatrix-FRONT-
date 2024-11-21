@@ -2,12 +2,12 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image"; // Importe o componente Image
 
 type Inputs = {
   email: string;
   password: string;
-  remember: boolean; 
-
+  remember: boolean;
 };
 
 export default function LoginAdmin() {
@@ -20,7 +20,7 @@ export default function LoginAdmin() {
 
   async function verificaLogin(data: Inputs) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/admin/login`, {
-        method: "POST",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -43,7 +43,14 @@ export default function LoginAdmin() {
     <main className="flex items-center justify-center min-h-screen bg-gray-900 p-6">
       <div className="max-w-md w-full bg-gray-800 p-8 rounded-lg shadow-lg border-2 border-gray-700">
         <div className="text-center mb-6">
-          <img src="/logo.png" alt="Logo" className="w-40 mx-auto mb-4" />
+          {/* Use o componente Image aqui */}
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={160} // Substitui o `w-40` (160px)
+            height={160} // Altura opcional, ou ajuste proporcional
+            className="mx-auto mb-4"
+          />
           <h1 className="text-3xl font-semibold text-white">Admin: Blockbuster Matrix</h1>
         </div>
         <form className="space-y-6" onSubmit={handleSubmit(verificaLogin)}>

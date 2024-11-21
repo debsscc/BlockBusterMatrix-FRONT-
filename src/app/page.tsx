@@ -20,19 +20,20 @@ export default function Home() {
         logaCliente(dados);
       }
     }
-
+  
     if (localStorage.getItem('client_key')) {
       const userId = localStorage.getItem('client_key') as string;
       loga(userId);
     }
-
+  
     async function getDados() {
       const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games`);
       const dados = await response.json();
       setGames(dados);
     }
     getDados();
-  }, []);
+  }, [logaCliente]);  //logaCliente como dependência
+  
 
   const listGames = games.map((game) => {
     if (!game.id) {
@@ -71,9 +72,10 @@ export default function Home() {
 
         {/* Título e descrição */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-extrabold text-white tracking-tight">
-            BlockBuster Matrix <span className="text-red-600">The world's #1</span> rental house game.
-          </h1>
+        <h1 className="text-5xl font-extrabold text-white tracking-tight">
+            BlockBuster Matrix <span className="text-red-600">The world&apos;s #1</span> rental house game.
+        </h1>
+
           <p className="text-lg text-gray-300 mt-4">
             Welcome to Blockbuster Matrix, where you can rent games online! Search for your favorite games below.
           </p>

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import { GameI } from "@/utils/types/games";
 import { useEffect, useState } from "react";
 
@@ -24,15 +25,21 @@ export default function ItemCart({ data, onDelete }: { data: GameI, onDelete: (a
             setGame(dados)
         }
         getDados()
-    }, [])
+    }, [data.id])
 
 
     return (
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-                <a href="#" className="shrink-0 md:order-1">
-                    <img className="h-20 w-20 dark:hidden" src={game?.photo} alt="image" />
-                </a>
+            <a href="#" className="shrink-0 md:order-1">
+                <Image
+                    src={game?.photo || "/placeholder.png"} // Substitua por um fallback se necessário
+                    alt="image"
+                    width={80} // Largura correspondente a `h-20`
+                    height={80} // Altura correspondente a `h-20`
+                    className="dark:hidden"
+                />
+            </a>
 
                 <label htmlFor="counter-input" className="sr-only">Choose quantity:</label>
                 <div className="flex items-center justify-between md:order-3 md:justify-end">

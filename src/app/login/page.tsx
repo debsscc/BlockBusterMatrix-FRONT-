@@ -1,4 +1,6 @@
 "use client"
+
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useClienteStore } from "@/context/cliente";
@@ -49,8 +51,14 @@ export default function Login() {
         <div className="p-8 space-y-6">
             {/* Logo */}
             <div className="flex justify-center mb-4">
-                <img src="/logo.png" className="h-20" alt="Logo" />
-            </div>
+                        <Image 
+                            src="/logo.png" 
+                            alt="Logo" 
+                            className="h-20" 
+                            width={80} 
+                            height={80} 
+                        />
+                    </div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
                 Sign in to your account
             </h1>

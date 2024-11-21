@@ -5,6 +5,8 @@ import { useParams, useRouter } from "next/navigation"
 import { Input } from "postcss"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import Image from 'next/image';
+
 
 type Inputs = {
     quantidade: number
@@ -30,14 +32,15 @@ export default function Details() {
 
     const [game, setGame] = useState<GameI>()
 
-    useEffect(()=> {
+    useEffect(() => {
         async function getDados() {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/${params.gameId}`)
-            const dados = await response.json()
-            setGame(dados)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/${params.gameId}`);
+            const dados = await response.json();
+            setGame(dados);
         }
-        getDados()
-    }, [])
+        getDados();
+    }, [params.gameId]); // Add params.gameId as a dependency to work!
+    
 
     async function addtoCart(data:Inputs) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/add/${game?.id}`, {
@@ -61,10 +64,19 @@ export default function Details() {
 
     return (
         <section className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-100 dark:bg-gray-900 p-4">
-            <a href="#" className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md md:flex-row md:w-full md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                {/* Photo from game.photo (bd)*/}
-                <img src={game?.photo} alt={game?.name} className="object-cover w-full rounded-t-lg h-80 md:h-auto md:w-1/3 md:rounded-none md:rounded-l-lg" />
-                
+            <a
+                href="#"
+                className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md md:flex-row md:w-full md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+                {/* Photo from game.photo (bd) */}
+                <Image
+                    src={game?.photo || '/default-image.jpg'}
+                    alt={game?.name || 'Game image'}  // valor padrão para o alt
+                    className="object-cover w-full rounded-t-lg h-80 md:h-auto md:w-1/3 md:rounded-none md:rounded-l-lg"
+                    width={500}
+                    height={500}
+                />
+
                 {/* Name and description*/}
                 <div className="flex flex-col justify-between p-4 leading-normal w-full md:w-2/3">
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{game?.name}</h5>
