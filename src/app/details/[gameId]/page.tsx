@@ -69,7 +69,7 @@ export default function Details() {
                 className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-md md:flex-row md:w-full md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
             >
                 {/* Photo from game.photo (bd) */}
-                <Image
+                <img
                     src={game?.photo || '/default-image.jpg'}
                     alt={game?.name || 'Game image'}  // valor padrão para o alt
                     className="object-cover w-full rounded-t-lg h-80 md:h-auto md:w-1/3 md:rounded-none md:rounded-l-lg"

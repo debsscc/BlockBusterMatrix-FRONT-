@@ -19,7 +19,7 @@ export default function LoginAdmin() {
   }, [setFocus]);
 
   async function verificaLogin(data: Inputs) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/admin/login`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/admins/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,6 +36,8 @@ export default function LoginAdmin() {
       router.push("/admin/dashboard");
     } else {
       alert("Error... Login or password invalid.");
+      console.log(response);
+      console.log(data);
     }
   }
 
