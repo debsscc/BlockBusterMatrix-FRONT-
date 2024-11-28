@@ -3,8 +3,11 @@
 import React, { useEffect, useState } from "react";
 import ItemCart from "./ItemCart";
 import { GameI } from "@/utils/types/games";
+import Link from "next/link";
+import { useClienteStore } from "@/context/cliente";
 
 export default function Cart() {
+    const { cliente, logaCliente } = useClienteStore()
     const [games, setGames] = useState<GameI[]>([]);
     const [cart, setCart] = useState<GameI[]>([]);
     const [loading, setLoading] = useState(true);
@@ -12,13 +15,17 @@ export default function Cart() {
     useEffect(() => {
         async function getDados() {
             setLoading(true);
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/${localStorage.getItem('client_key')}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/${cliente.id}`);
             const dados = await response.json();
             setGames(dados);
             setCart(dados.slice(0, 2)); // Apenas como exemplo, você pode ajustar isso conforme necessário
             setLoading(false);
         }
         getDados();
+        console.log(cart);
+        console.log(cliente.id);
+        
+        
     }, []);
 
     const onDelete = (a: GameI) => {
@@ -77,12 +84,12 @@ export default function Cart() {
 
                             <div className="flex items-center justify-center gap-2">
                                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
-                                <a href="/" title="" className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
+                                <Link href="/" title="" className="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
                                     Continue Shopping
                                     <svg className="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

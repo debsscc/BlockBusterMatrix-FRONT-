@@ -45,7 +45,7 @@ export default function Details() {
     async function addtoCart(data:Inputs) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/add/${game?.id}`, {
             method: 'POST',
-            body: JSON.stringify({clienteId: cliente.id, quantidade: 1}),
+            body: JSON.stringify({userId: cliente.id, quantidade: 1}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -59,6 +59,8 @@ export default function Details() {
             alert("Error!")
         }
         console.log(dados)
+        console.log(game?.id)
+        console.log(cliente?.id)
     }
 
 
@@ -126,10 +128,10 @@ export default function Details() {
                 >
                     Back to HomePage
                 </button>
-                <form>
+                <form onSubmit={handleSubmit(addtoCart)}>
                 <button type="submit"
                     className="px-4 py-2 bg-yellow-300 text-black font-semibold rounded-lg shadow-md hover:bg-green-400 transition duration-300 ease-in-out"
-                    onSubmit={handleSubmit(addtoCart)}
+                    
                 >
                     Add to Cart 🛒
                 </button>
