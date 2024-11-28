@@ -1,3 +1,4 @@
+/*************  ✨ Codeium Command 🌟  *************/
 "use client";
 
 import Image from "next/image";
@@ -25,6 +26,7 @@ export function Header() {
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <Image src="/logo.png" className="h-8" alt="Logo" width={32} height={32} />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap text-yellow-400">
+                        Blockbuster Matrix {cliente.nome}
                         Blockbuster Matrix {cliente.id}
                     </span>
                 </Link>
@@ -52,6 +54,7 @@ export function Header() {
                             <div className="flex gap-5">
                                 {cliente.id ?
                                     <>
+                                        <span className="text-yellow-400">Cliente: {cliente.id}</span>
                                         <span className="text-yellow-400">Cliente: {cliente.nome}</span>
 
                                         <span onClick={clienteLogout} className="block py-2 px-3 text-yellow-400 rounded hover:bg-yellow-600 md:hover:bg-transparent md:hover:text-yellow-500 md:p-0 md:dark:hover:text-yellow-500 dark:text-white dark:hover:bg-yellow-600 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
@@ -76,3 +79,5 @@ export function Header() {
         </nav>
     );
 }
+
+/******  cac78e53-842c-448f-ae62-5202f5d36f7e  *******/
