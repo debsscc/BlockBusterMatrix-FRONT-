@@ -25,10 +25,6 @@ export default function Cart() {
         setCart(cart.filter(game => game !== a));
     };
 
-    if (loading) {
-        return <p>Loading...</p>; // Exibe uma mensagem enquanto carrega os dados
-    }
-
     return (
         <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
             <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">

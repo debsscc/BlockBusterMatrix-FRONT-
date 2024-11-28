@@ -13,6 +13,8 @@ export function ItemGame({ data }: { data: GameI }) {
             className="w-full h-full object-cover transform group-hover:scale-105 group-hover:blur-sm transition-all duration-500"
             src={data?.photo}
             alt={data.name}
+            width={320}
+            height={480}
           />
           {/* Camada de fundo para melhorar a legibilidade (apenas no hover) */}
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 group-hover:bg-black transition-all duration-300" />
