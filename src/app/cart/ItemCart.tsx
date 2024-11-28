@@ -32,7 +32,7 @@ export default function ItemCart({ data, onDelete }: { data: GameI, onDelete: (a
         <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
             <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
             <a href="#" className="shrink-0 md:order-1">
-                <Image
+                <img
                     src={game?.photo || "/placeholder.png"} // Substitua por um fallback se necessário
                     alt="image"
                     width={80} // Largura correspondente a `h-20`
