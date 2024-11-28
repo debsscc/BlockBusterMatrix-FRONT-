@@ -9,7 +9,7 @@ export function ItemGame({ data }: { data: GameI }) {
         {/* Cartão do Jogo com efeito de Hover */}
         <div className="bg-black bg-opacity-70 backdrop-blur-lg border border-gray-300 rounded-xl shadow-lg overflow-hidden transition-all duration-300">
           {/* Imagem com efeito de desfoque */}
-          <Image
+          <img
             className="w-full h-full object-cover transform group-hover:scale-105 group-hover:blur-sm transition-all duration-500"
             src={data?.photo}
             alt={data.name}
