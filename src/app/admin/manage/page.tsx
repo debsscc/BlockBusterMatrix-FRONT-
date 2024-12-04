@@ -4,7 +4,7 @@ import { useEffect, useState, useRef, use } from "react";
 import Sidebar from "@/components/Sidebar";
 import Manager from "@/components/layoutManage";
 
-export default function managePrincipal() {
+export default function ManagePrincipal() {
 
     const [currentIndex, setCurrentIndex] = useState(0);
   
