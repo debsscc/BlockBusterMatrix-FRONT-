@@ -14,4 +14,5 @@ export interface GameI {
     createdAt: Date
     updateAt: Date
     console: ConsoleI
+    
 }

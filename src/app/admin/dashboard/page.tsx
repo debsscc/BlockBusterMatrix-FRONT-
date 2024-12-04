@@ -1,10 +1,8 @@
 "use client";
 
-import { useClienteStore } from "@/context/cliente";
 import { useEffect, useState, useRef, use } from "react";
 import Sidebar from "@/components/Sidebar";
-import Principal from "@/components/layoutAdmin";
-import { Layout } from "lucide-react";
+import PrincipalAdmin from "@/components/layoutAdmin";
 
 export default function DashboardPrincipal() {
 
@@ -19,7 +17,12 @@ export default function DashboardPrincipal() {
 
       {/* Layout */}
       <div className="flex-1 p-4 bg-gray-100">
-        <Principal />
+        {/* Header */}
+      <header className="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 shadow-lg">
+        <h1 className="text-4xl font-extrabold text-center">Blockbuster Admin Dashboard</h1>
+        <p className="text-center text-lg mt-2">Insights and Analytics!</p>
+      </header>
+        <PrincipalAdmin/>
       </div>
     </div>
   );
