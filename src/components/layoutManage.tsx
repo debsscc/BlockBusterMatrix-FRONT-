@@ -38,11 +38,17 @@ export default function Manager() {
       .then((res) => res.json())
       .then(setGames)
       .catch((err) => console.error(err));
+      async function getConsoles() {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/consoles`)
+      const dados = await response.json()
+      setConsoles(dados)
+      console.log(dados)
 
-    fetch(`${process.env.NEXT_PUBLIC_URL_API}/consoles`)
-      .then((res) => res.json())
-      .then(setConsoles)
-      .catch((err) => console.error(err));
+    }
+    getConsoles();
+
+    
+      
   }, []);
 
   // Handlers for adding a game
@@ -77,7 +83,7 @@ export default function Manager() {
 
   const selectConsole = consoles.map((console) => (
     <option key={console.id} value={console.id}>
-      {console.nome}
+      {console.name}
     </option>
   ))
 

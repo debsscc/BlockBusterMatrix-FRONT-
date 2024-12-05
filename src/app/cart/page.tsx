@@ -17,8 +17,10 @@ export default function Cart() {
             setLoading(true);
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/${cliente.id}`);
             const dados = await response.json();
-            setGames(dados);
-            setCart(dados.slice(0, 2)); // Apenas como exemplo, você pode ajustar isso conforme necessário
+            setCart(dados); // Apenas como exemplo, você pode ajustar isso conforme necessário
+            // setGames(dados);
+            console.log(dados);
+            
             setLoading(false);
         }
         getDados();
