@@ -3,8 +3,18 @@
 import Image from "next/image";
 import { GameI } from "@/utils/types/games";
 import { useEffect, useState } from "react";
+import { ProdutoI } from "@/utils/types/produtos";
 
-export default function ItemCart({ data, onDelete }: { data: GameI, onDelete: (a: GameI) => void }) {
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * Componente que representa um item no carrinho de compras
+ * 
+ * @param {{ data: ProdutoI }} props 
+ * @returns {JSX.Element}
+ */
+
+/******  11d7546f-cefb-4e20-9d38-320f4bd54910  *******/
+export default function ItemCart({ data }: { data: ProdutoI }) {
 
     const [quantity, setQuantity] = useState(2);
     const increment = () => setQuantity(quantity + 1);
@@ -20,7 +30,7 @@ export default function ItemCart({ data, onDelete }: { data: GameI, onDelete: (a
     useEffect(() => {
         async function getDados() {
             /* fech e uma maneira de buscar certos dados */
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/${data.id}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/${data.gameId}`)
             const dados = await response.json()
             setGame(dados)
         }
@@ -72,7 +82,7 @@ export default function ItemCart({ data, onDelete }: { data: GameI, onDelete: (a
                             Add to Favorites
                         </button>
 
-                        <button type="button" className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500" onClick={() => onDelete(data)}>
+                        <button type="button" className="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                             <svg className="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                             </svg>

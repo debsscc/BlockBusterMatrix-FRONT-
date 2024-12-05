@@ -1,38 +1,37 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Key, useEffect, useState } from "react";
 import ItemCart from "./ItemCart";
-import { GameI } from "@/utils/types/games";
 import Link from "next/link";
 import { useClienteStore } from "@/context/cliente";
+import { CartI } from "@/utils/types/carts";
 
 export default function Cart() {
     const { cliente, logaCliente } = useClienteStore()
-    const [games, setGames] = useState<GameI[]>([]);
-    const [cart, setCart] = useState<GameI[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [cart, setCart] = useState<CartI>();
 
     useEffect(() => {
         async function getDados() {
-            setLoading(true);
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/cart/${cliente.id}`);
             const dados = await response.json();
             setCart(dados); // Apenas como exemplo, você pode ajustar isso conforme necessário
             // setGames(dados);
             console.log(dados);
-            
-            setLoading(false);
+            setCart(dados);
+            console.log(cart?.id);
         }
         getDados();
-        console.log(cart);
-        console.log(cliente.id);
         
         
-    }, []);
+    }, [cliente.id]);
 
-    const onDelete = (a: GameI) => {
-        setCart(cart.filter(game => game !== a));
-    };
+    const listaCarrinho = cart?.produtos.map((cart => (
+        <ItemCart key={cart.id} data={cart} />
+    )));
+
+    // const onDelete = (a: GameI) => {
+    //     setCart(cart.filter(game => game !== a));
+    // };
 
     return (
         <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
@@ -43,13 +42,11 @@ export default function Cart() {
                     <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                         <div className="space-y-6">
                             {/* Cart list */}
-                            {cart.length === 0 ? (
+                            {cart?.produtos.length === 0 ? (
                                 <p className="text-red-500 dark:text-white">Your cart is empty ... ( ɵ̥̥‸ɵ̥̥) </p>
                             ) : (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                                    {cart.map(game => (
-                                        <ItemCart key={game.id} data={game} onDelete={onDelete} />
-                                    ))}
+                                    {listaCarrinho}
                                 </div>
                             )}
                             {/* Cart list */}
@@ -63,19 +60,19 @@ export default function Cart() {
                             <div className="space-y-4">
                                 <div className="space-y-2">
                                     <dl className="flex items-center justify-between gap-4">
-                                        {cart.map((game) => (
-                                            <React.Fragment key={game.id}>
-                                                <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt>
-                                                <dd className="text-base font-medium text-gray-900 dark:text-white">${game.price}</dd>
-                                            </React.Fragment>
-                                        ))}
+                                        {/* {cart.map((game) => ( */}
+                                            {/* <React.Fragment key={game.id as Key}> */}
+                                                {/* <dt className="text-base font-normal text-gray-500 dark:text-gray-400">Original price</dt> */}
+                                                {/* <dd className="text-base font-medium text-gray-900 dark:text-white">${cart.total}</dd> */}
+                                            {/* </React.Fragment> */}
+                                        {/* ))} */}
                                     </dl>
                                 </div>
 
                                 <dl className="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                                     <dt className="text-base font-bold text-gray-900 dark:text-white">Total</dt>
                                     <dd className="text-base font-bold text-gray-900 dark:text-white">
-                                        ${cart.reduce((total, game) => total + game.price, 0)}
+                                        {/* ${cart.reduce((total, game) => total + game.price, 0)} */}
                                     </dd>
                                 </dl>
                             </div>
