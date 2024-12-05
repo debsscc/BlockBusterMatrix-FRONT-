@@ -113,15 +113,6 @@ export default function PrincipalAdmin() {
         </div>
       </div>
 
-      {/* Gráfico principal */}
-      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-        <Chart
-          chartType="Bar"
-          width="100%"
-          height="400px"
-          data={data}        />
-      </div>
-
       {/* Gráfico de Jogos por Console */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">Games by Console</h2>

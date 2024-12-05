@@ -80,6 +80,31 @@ export default function Manager() {
       {console.nome}
     </option>
   ))
+
+  async function DeleteGames (id: number) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/games/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.status === 200) {
+      const game = await response.json();
+      setGames([...games, game]);
+      Swal.fire({
+        icon: "success",
+        title: "Game deleted successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      const error = await response.json();
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error deleting game",
+        text: error.message,
+      });
+    }
+  }
   
 
   return (
@@ -91,10 +116,9 @@ export default function Manager() {
       </header>
 
       {/* Content */}
-      <div className="container mx-auto p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="container mx-auto p-8 w-full">
           {/* Add Game Card */}
-          <form className="bg-gradient-to-r from-blue-900 to-blue-900 rounded-lg shadow-xl p-8 flex flex-col space-y-4" onSubmit={handleSubmit(addGames)}>
+          <form className="bg-gradient-to-r from-blue-900 to-blue-900 rounded-lg shadow-xl p-8 flex flex-col space-y-4 w-3/4 mx-auto" onSubmit={handleSubmit(addGames)}>
             <h2 className="text-2xl font-semibold text-center text-yellow-500">Add New Game</h2>
 
             <label className="text-white" htmlFor="name">Game Name</label>
@@ -205,7 +229,7 @@ export default function Manager() {
         {/* List of Games */}
         <div className="mt-8">
           <h2 className="text-2xl font-semibold text-white">Game List</h2>
-          <ul className="mt-4 space-y-4">
+          <ul className="mt-4 space-y-4 mx-auto">
             {games.map((game) => (
               <li key={game.id} className="bg-gray-800 p-4 rounded-lg flex items-center space-x-4">
                 <img src={game.photo} alt={game.name} className="h-16 w-16 object-cover rounded-md" />
@@ -215,7 +239,7 @@ export default function Manager() {
                   <p className="text-gray-400">Price: ${game.price}</p>
                 </div>
                 <button
-                  // onClick={() => handleDeleteGame(game.id)}
+                  onClick={() => DeleteGames(game.id)}
                   className="text-red-500 hover:text-red-700"
                 >
                   <TrashIcon className="h-6 w-6" />
@@ -225,6 +249,5 @@ export default function Manager() {
           </ul>
         </div>
       </div>
-    </div>
   );
 };
