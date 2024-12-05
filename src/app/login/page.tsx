@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useClienteStore } from "@/context/cliente";
 import { CircleUserRound } from "lucide-react";
+import Link from "next/link";
 
 type Inputs = {
     email: string
@@ -83,7 +84,7 @@ export default function Login() {
                 </button>
             </form>
             <div className="flex items-center justify-center mt-6">
-                <span className="text-sm text-gray-600 dark:text-gray-400">Don’t have an account yet? <a href="#" className="text-indigo-600 font-medium hover:underline dark:text-indigo-500">Sign up</a></span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">Don’t have an account yet? <Link href="login/cadastro" className="text-indigo-600 font-medium hover:underline dark:text-indigo-500">Sign up</Link></span>
             </div>
             <button type="button" className="w-full flex items-center justify-center py-3 mt-4 bg-blue-700 text-white font-medium rounded-lg hover:bg-blue-800" onClick={() => router.push('/admin')}>
                 <CircleUserRound className="mr-2" size={20} /> Admin

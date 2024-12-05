@@ -45,8 +45,8 @@ export default function ItemCart({ data }: { data: ProdutoI }) {
                 <img
                     src={game?.photo || "/placeholder.png"} // Substitua por um fallback se necessário
                     alt="image"
-                    width={80} // Largura correspondente a `h-20`
-                    height={80} // Altura correspondente a `h-20`
+                    width={100} // Largura correspondente a `h-20`
+                    height={100} // Altura correspondente a `h-20`
                     className="dark:hidden"
                 />
             </a>

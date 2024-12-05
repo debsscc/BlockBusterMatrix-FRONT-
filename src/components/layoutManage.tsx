@@ -58,10 +58,22 @@ export default function Manager() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(
+        {
+          name: data.name,
+          year: Number(data.year),
+          price: data.price,
+          photo: data.photo,
+          genre: data.genre,
+          developers: data.developers,
+          description: data.description,
+          destaque: data.destaque,
+          consoleId: Number(data.consoleId),
+        }
+      ),
     });
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       const game = await response.json();
       setGames([...games, game]);
       Swal.fire({
@@ -147,6 +159,16 @@ export default function Manager() {
               placeholder="Year (e.g., 2000)"
               className="border p-3 rounded-lg bg-white text-gray-900"
               {...register("year")}
+            />
+
+            {/* Developers */}
+            <label className="text-white" htmlFor="developers">Developers</label>
+            <input
+              type="text"
+              id="developers"
+              placeholder="developers (e.g., Ubisoft)"
+              className="border p-3 rounded-lg bg-white text-gray-900"
+              {...register("developers")}
             />
 
             {/* Price */}
